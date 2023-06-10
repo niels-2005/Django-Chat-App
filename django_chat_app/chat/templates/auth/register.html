@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+<form method="POST" action="/register/">
+    {% csrf_token %}
+    <input type="hidden" name="redirect" />
+    <h2>Register</h2>
+
+    <div>
+        <h6>Username</h6>
+        {{ form.username }}
+    </div>
+    <div>
+        <h6>Password</h6>
+        {{ form.password1 }}
+    </div>
+    <div>
+        <h6>Password Again</h6>
+        {{ form.password2 }}
+    </div>
+    <div>
+        <h6>Email</h6>
+        {{ form.email }}
+    </div>
+    <div>
+        <h6>------</h6>
+        <button type="submit">Register</button>
+    </div>
+
+    <!-- Display validation errors -->
+    {% for field in form %} {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %} {% endfor %}
+</form>
+{% endblock %}
